@@ -37,7 +37,7 @@ def run():
             t = Decimal(line)
             count += 1
             data[t] = data.get(t, 0) + 1
-        except:
+        except Exception:
             print("invalid line %r" % line, file=sys.stderr)
     print(calc_95(data, count))
 

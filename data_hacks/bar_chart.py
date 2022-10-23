@@ -96,20 +96,26 @@ def run(input_stream, options):
 if __name__ == "__main__":
     parser = OptionParser()
     parser.usage = "cat data | %prog [options]"
-    parser.add_option("-a", "--agg", dest="agg_value_key", default=False, action="store_true",
-                      help="Two column input format, space seperated with value<space>key")
-    parser.add_option("-A", "--agg-key-value", dest="agg_key_value", default=False, action="store_true",
-                      help="Two column input format, space seperated with key<space>value")
-    parser.add_option("-k", "--sort-keys", dest="sort_keys", default=True, action="store_true",
-                      help="sort by the key [default]")
-    parser.add_option("-v", "--sort-values", dest="sort_values", default=False, action="store_true",
-                      help="sort by the frequence")
-    parser.add_option("-r", "--reverse-sort", dest="reverse_sort", default=False, action="store_true",
+    parser.add_option("-a", "--agg", dest="agg_value_key", default=False,
+                      action="store_true",
+                      help="Two column input format, "
+                           "space seperated with value<space>key")
+    parser.add_option("-A", "--agg-key-value", dest="agg_key_value",
+                      default=False, action="store_true",
+                      help="Two column input format, space seperated with "
+                           "key<space>value")
+    parser.add_option("-k", "--sort-keys", dest="sort_keys", default=True,
+                      action="store_true", help="sort by the key [default]")
+    parser.add_option("-v", "--sort-values", dest="sort_values", default=False,
+                      action="store_true", help="sort by the frequence")
+    parser.add_option("-r", "--reverse-sort", dest="reverse_sort",
+                      default=False, action="store_true",
                       help="reverse the sort")
-    parser.add_option("-n", "--numeric-sort", dest="numeric_sort", default=False, action="store_true",
+    parser.add_option("-n", "--numeric-sort", dest="numeric_sort",
+                      default=False, action="store_true",
                       help="sort keys by numeric sequencing")
-    parser.add_option("-p", "--percentage", dest="percentage", default=False, action="store_true",
-                      help="List percentage for each bar")
+    parser.add_option("-p", "--percentage", dest="percentage", default=False,
+                      action="store_true", help="List percentage for each bar")
     parser.add_option("--dot", dest="dot", default='∎',
                       help="Dot representation")
 

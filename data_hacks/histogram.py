@@ -97,7 +97,7 @@ def load_stream(input_stream, agg_value_key, agg_key_value):
                 yield DataPoint(Decimal(key), int(value))
             else:
                 yield DataPoint(Decimal(clean_line), 1)
-        except:
+        except Exception:
             logging.exception('failed %r', line)
             print("invalid line %r" % line, file=sys.stderr)
 
@@ -182,7 +182,7 @@ def histogram(stream, options):
             raise ValueError('# of buckets must be > 0')
 
         def first_bucket_size(k, n):
-            """Logarithmic buckets means, the size of bucket i+1 is twice
+            r"""Logarithmic buckets means, the size of bucket i+1 is twice
             the size of bucket i.
             For k+1 buckets whose sum is n, we have
             (note, k+1 buckets, since 0 is counted as well):
@@ -258,8 +258,8 @@ def histogram(stream, options):
         if options.percentage:
             percentage = " (%0.2f%%)" % (100 * Decimal(bucket_count) /
                                          Decimal(samples))
-        print(format_string % (bucket_min, bucket_max, bucket_count, options.dot *
-                               star_count, percentage))
+        print(format_string % (bucket_min, bucket_max, bucket_count,
+                               options.dot * star_count, percentage))
 
 
 if __name__ == "__main__":

@@ -43,7 +43,8 @@ def get_sample_rate(rate_string):
         rate = int(rate * 100)
     else:
         raise ValueError(
-            "rate %r is invalid rate format must be '10%%' or '1/10'" % rate_string)
+            "rate %r is invalid rate format must be '10%%' or '1/10'"
+            % rate_string)
     if rate < 1 or rate > 100:
         raise ValueError('rate %r must be 1%% <= rate <= 100%% ' % rate_string)
     return rate
