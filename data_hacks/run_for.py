@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # 
 # Copyright 2010 Bitly
 #
@@ -38,7 +38,7 @@ def getruntime(arg):
     elif suffix == "d":
         return base * 60 * 60 * 24
     else:
-        print >>sys.stderr, "invalid time suffix %r. must be one of s,m,h,d" % arg
+        print("invalid time suffix %r. must be one of s,m,h,d" % arg, file=sys.stderr)
 
 def run(runtime):
     end = time.time() + runtime
@@ -51,12 +51,12 @@ if __name__ == "__main__":
     usage = "Usage: tail -f access.log | %s [time] | ..." % os.path.basename(sys.argv[0])
     help = "time can be in the format 10s, 10m, 10h, etc"
     if sys.stdin.isatty():
-        print usage
-        print help
+        print(usage)
+        print(help)
         sys.exit(1)
 
     runtime = getruntime(sys.argv[-1])
     if not runtime:
-        print usage
+        print(usage)
         sys.exit(1)
     run(runtime)

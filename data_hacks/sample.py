@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # 
 # Copyright 2010 Bitly
 #
@@ -56,10 +56,10 @@ if __name__ == "__main__":
     
     try:
         sample_rate = get_sample_rate(sys.argv[-1])
-    except ValueError, e:
-        print >>sys.stderr, e
+    except ValueError as e:
+        print(e, file=sys.stderr)
         parser.print_usage()
         sys.exit(1)
     if options.verbose:
-        print >>sys.stderr, "Sample rate is %d%%" % sample_rate 
+        print("Sample rate is %d%%" % sample_rate, file=sys.stderr) 
     run(sample_rate)

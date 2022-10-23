@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python333
 # -*- coding: utf-8 -*-
 #
 # Copyright 2010 Bitly
@@ -56,24 +56,24 @@ def run(input_stream, options):
             total += 1
     
     if not data:
-        print "Error: no data"
+        print("Error: no data")
         sys.exit(1)
     
-    max_length = max([len(key) for key in data.keys()])
+    max_length = max([len(key) for key in list(data.keys())])
     max_length = min(max_length, 50)
     value_characters = 80 - max_length
     max_value = max(data.values())
     scale = int(math.ceil(float(max_value) / value_characters))
     scale = max(1, scale)
     
-    print "# each " + options.dot + " represents a count of %d. total %d" % (scale, total)
+    print("# each " + options.dot + " represents a count of %d. total %d" % (scale, total))
     
     if options.sort_values:
-        data = [[value, key] for key, value in data.items()]
+        data = [[value, key] for key, value in list(data.items())]
         data.sort(key=lambda x: x[0], reverse=options.reverse_sort)
     else:
         # sort by keys
-        data = [[value, key] for key, value in data.items()]
+        data = [[value, key] for key, value in list(data.items())]
         if options.numeric_sort:
             # keys could be numeric too
             data.sort(key=lambda x: (Decimal(x[1])), reverse=options.reverse_sort)
@@ -85,7 +85,7 @@ def run(input_stream, options):
     for value, key in data:
         if options.percentage:
             percentage = " (%0.2f%%)" % (100 * Decimal(value) / Decimal(total))
-        print str_format % (key[:max_length], value, (value / scale) * options.dot, percentage)
+        print(str_format % (key[:max_length], value, (value // scale) * options.dot, percentage))
 
 if __name__ == "__main__":
     parser = OptionParser()
@@ -110,7 +110,7 @@ if __name__ == "__main__":
     
     if sys.stdin.isatty():
         parser.print_usage()
-        print "for more help use --help"
+        print("for more help use --help")
         sys.exit(1)
     run(load_stream(sys.stdin), options)
 
