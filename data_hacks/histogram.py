@@ -34,6 +34,7 @@ from collections import namedtuple
 
 class MVSD(object):
     "A class that calculates a running Mean / Variance / Standard Deviation"
+
     def __init__(self):
         self.is_started = False
         self.ss = Decimal(0)  # (running) sum of square deviations from mean
@@ -64,6 +65,7 @@ class MVSD(object):
 
     def mean(self):
         return self.m
+
 
 DataPoint = namedtuple('DataPoint', ['value', 'count'])
 
@@ -288,7 +290,8 @@ if __name__ == "__main__":
                       help="format for bucket numbers")
     parser.add_option("-p", "--percentage", dest="percentage", default=False,
                       action="store_true", help="List percentage for each bar")
-    parser.add_option("--dot", dest="dot", default='∎', help="Dot representation")
+    parser.add_option("--dot", dest="dot", default='∎',
+                      help="Dot representation")
 
     (options, args) = parser.parse_args()
     if sys.stdin.isatty():

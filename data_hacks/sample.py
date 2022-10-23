@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# 
+#
 # Copyright 2010 Bitly
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may
@@ -25,35 +25,40 @@ import random
 from optparse import OptionParser
 from decimal import Decimal
 
+
 def run(sample_rate):
     input_stream = sys.stdin
     for line in input_stream:
-        if random.randint(1,100) <= sample_rate:
+        if random.randint(1, 100) <= sample_rate:
             sys.stdout.write(line)
+
 
 def get_sample_rate(rate_string):
     """ return a rate as a percentage"""
     if rate_string.endswith("%"):
         rate = int(rate_string[:-1])
     elif '/' in rate_string:
-        x, y  = rate_string.split('/')
+        x, y = rate_string.split('/')
         rate = Decimal(x) / (Decimal(y) * Decimal('1.0'))
         rate = int(rate * 100)
     else:
-        raise ValueError("rate %r is invalid rate format must be '10%%' or '1/10'" % rate_string)
+        raise ValueError(
+            "rate %r is invalid rate format must be '10%%' or '1/10'" % rate_string)
     if rate < 1 or rate > 100:
         raise ValueError('rate %r must be 1%% <= rate <= 100%% ' % rate_string)
     return rate
 
+
 if __name__ == "__main__":
     parser = OptionParser(usage="cat data | %prog [options] [sample_rate]")
-    parser.add_option("--verbose", dest="verbose", default=False, action="store_true")
+    parser.add_option("--verbose", dest="verbose",
+                      default=False, action="store_true")
     (options, args) = parser.parse_args()
-    
+
     if not args or sys.stdin.isatty():
         parser.print_usage()
         sys.exit(1)
-    
+
     try:
         sample_rate = get_sample_rate(sys.argv[-1])
     except ValueError as e:
@@ -61,5 +66,5 @@ if __name__ == "__main__":
         parser.print_usage()
         sys.exit(1)
     if options.verbose:
-        print("Sample rate is %d%%" % sample_rate, file=sys.stderr) 
+        print("Sample rate is %d%%" % sample_rate, file=sys.stderr)
     run(sample_rate)
